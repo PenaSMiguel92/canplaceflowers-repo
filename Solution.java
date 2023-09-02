@@ -1,44 +1,20 @@
 public class Solution {
     public boolean canPlaceFlowers(int[] flowerbed, int n) {
-        if (n == 0) {
-            return true;
-        }
-        if (n > flowerbed.length)
-            return false;
-        if (flowerbed.length == 1 && flowerbed[0] == 0 && n == 1)
-            return true;
-        
-        int count = 0;
-        for (int i = 0; i < flowerbed.length; i++) {
-            
-            if (i == 0 && i + 1 < flowerbed.length) {
-                if ((flowerbed[i] == 0) && (flowerbed[i + 1] == 0)) {
-                    flowerbed[i] = 1;
-                    count++;
-                }
-                    
+        int i = 0;
+        while (i < flowerbed.length - 1) {
+            if (flowerbed[i] == 1) {
+                i += 2;
+            } else if (flowerbed[i + 1] == 1) {
+                i += 3;
+            } else {
+                n--;
+                i += 2;
             }
-                
-            if ((i >= 1) && (i + 1 < flowerbed.length)){
-                if ((flowerbed[i - 1] == 0) && (flowerbed[i] == 0) && (flowerbed[i + 1] == 0)) {
-                    flowerbed[i] = 1;
-                    count++;
-                }
-                    
-            } 
+        }
 
-            if (i == flowerbed.length - 1) {
-                if ((flowerbed[i] == 0) && (flowerbed[i - 1] == 0)) {
-                    flowerbed[i] = 1;
-                    count++;
-                }
-                    
-            }
-                
+        if (i == flowerbed.length - 1 && flowerbed[i] == 0) {
+            n--;
         }
-        if (count >= n)
-            return true;
-        else    
-            return false;
+        return n <= 0;
     } 
 }
