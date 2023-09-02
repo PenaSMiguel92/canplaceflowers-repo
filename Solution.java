@@ -1,5 +1,8 @@
 public class Solution {
     public boolean canPlaceFlowers(int[] flowerbed, int n) {
+        if (n == 0) {
+            return true;
+        }
         if (n > flowerbed.length)
             return false;
         if (flowerbed.length == 1 && flowerbed[0] == 0 && n == 1)
